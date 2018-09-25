@@ -5,7 +5,7 @@
 
   <groupId>uk.gov.dwp.gysp</groupId>
   <artifactId>pdf-generator</artifactId>
-  <version>9.9.9-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>pdf-generator</name>
