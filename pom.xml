@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>uk.gov.dwp.gysp</groupId>
-	<artifactId>pdf-generator</artifactId>
-	<version>9.9.9-SNAPSHOT</version>
-	<packaging>jar</packaging>
+  <groupId>uk.gov.dwp.gysp</groupId>
+  <artifactId>pdf-generator</artifactId>
+  <version>9.9.9-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-	<name>pdf-generator</name>
-	<description>PDF generator micro-service</description>
+  <name>pdf-generator</name>
+  <description>PDF generator micro-service</description>
 
-	<parent>
+  <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.0.4.RELEASE</version>
-    <relativePath /> <!-- lookup parent from repository -->
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
 
-
-	<properties>
-		<integration-tests.skip>true</integration-tests.skip>
-		<unit-tests.skip>false</unit-tests.skip>
-		<java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <swagger.version>2.3.0</swagger.version>
-        <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
-	</properties>
+  <properties>
+    <integration-tests.skip>true</integration-tests.skip>
+    <unit-tests.skip>false</unit-tests.skip>
+    <java.version>1.8</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <swagger.version>2.3.0</swagger.version>
+    <jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
+  </properties>
 
   <dependencyManagement>
     <dependencies>
@@ -65,12 +64,12 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-		<!-- Apache -->
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>2.0.11</version>
-		</dependency>
+    <!-- Apache -->
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>2.0.11</version>
+    </dependency>
 
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
@@ -78,13 +77,13 @@
     </dependency>
 
 
-		<!-- Test -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
-			<scope>test</scope>
-		</dependency>
+    <!-- Test -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.3.2</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -92,7 +91,7 @@
       <scope>test</scope>
     </dependency>
 
- 		<!-- Documentation -->
+    <!-- Documentation -->
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
@@ -104,10 +103,10 @@
       <version>${swagger.version}</version>
     </dependency>
 
-	</dependencies>
-	<build>
+  </dependencies>
+  <build>
 
-		 <!-- plugin management -->
+    <!-- plugin management -->
     <pluginManagement>
       <plugins>
         <plugin>
@@ -118,15 +117,15 @@
       </plugins>
     </pluginManagement>
 
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<classifier>exec</classifier>
-				</configuration>
-			</plugin>
-			<plugin>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <classifier>exec</classifier>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
         <version>3.3.1</version>
@@ -180,30 +179,17 @@
         </executions>
       </plugin>
 
-		</plugins>
-	</build>
+    </plugins>
+  </build>
 
-	<profiles>
-		<profile>
-			<id>integration</id>
-			<properties>
-				<integration-tests.skip>false</integration-tests.skip>
-				<unit-tests.skip>true</unit-tests.skip>
-			</properties>
-		</profile>
-	</profiles>
-
-	<distributionManagement>
-    <repository>
-      <id>Component1-s3-release-repo</id>
-      <name>Release Repository for Component1</name>
-      <url>s3://rbc-code-promotion-dev/Application/GYSP/release</url>
-    </repository>
-    <snapshotRepository>
-      <id>Component1-s3-snapshot-repo</id>
-      <name>Snapshot Repository for Component1</name>
-      <url>s3://rbc-code-promotion-dev/Application/GYSP/snapshot</url>
-    </snapshotRepository>
-  </distributionManagement>
+  <profiles>
+    <profile>
+      <id>integration</id>
+      <properties>
+        <integration-tests.skip>false</integration-tests.skip>
+        <unit-tests.skip>true</unit-tests.skip>
+      </properties>
+    </profile>
+  </profiles>
 
 </project>
