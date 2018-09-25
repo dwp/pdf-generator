@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: pdf-generator
+---
+server:
+  port: 8080
+---
+spring:
+  profiles: local
+service:
+  api:
+    url: http://localhost:${server.port}/api/pdfGenerator
