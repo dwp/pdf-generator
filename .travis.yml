@@ -1,0 +1,14 @@
+language: java
+install: true
+
+branches:
+  only:
+  - master
+
+stages:
+  - unit-test
+
+jobs:
+  include:
+    - stage: unit-test
+      script: mvn clean test

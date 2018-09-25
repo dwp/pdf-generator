@@ -1,0 +1,9 @@
+target/
+.classpath
+.project
+.settings/
+.DS_Store
+.springBeans
+logs/
+.idea/
+pdf-generator.iml

@@ -1,0 +1,6 @@
+logging:
+  path: target/log
+service:
+  api:
+    url: https://localhost:${server.port}/api/pdfGenerator
+---
