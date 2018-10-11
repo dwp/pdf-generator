@@ -1,6 +1,5 @@
 package uk.gov.dwp.gysp.pdf.processor;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.pdfbox.io.RandomAccessBuffer;
@@ -37,7 +36,7 @@ public class PdfGeneratorProcessorTest {
 
 	@Test
 	public void confirmPDFDocumentIsCreatedWithJSON()
-			throws JsonProcessingException, IOException, PdfGeneratorException {
+			throws IOException, PdfGeneratorException {
 		// Given
 		final JsonNode json = new ObjectMapper().readTree("{\"First Name\":\"Samba\"}");
 
@@ -55,7 +54,7 @@ public class PdfGeneratorProcessorTest {
 	}
 
 	@Test
-	public void emptyJsonReturnsStream() throws JsonProcessingException, IOException, PdfGeneratorException {
+	public void emptyJsonReturnsStream() throws IOException, PdfGeneratorException {
 		// Given
 		final JsonNode json = new ObjectMapper().readTree("{}");
 

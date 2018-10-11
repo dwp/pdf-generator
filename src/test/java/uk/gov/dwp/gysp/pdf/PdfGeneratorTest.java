@@ -1,6 +1,5 @@
 package uk.gov.dwp.gysp.pdf;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.ArrayUtils;
@@ -23,7 +22,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void emptyJsonReturnsPdf() throws JsonProcessingException, IOException {
+	public void emptyJsonReturnsPdf() throws IOException {
 		// Given
 		final int expectedPageNo = 1;
 		final JsonNode json = new ObjectMapper().readTree("{}");
@@ -36,7 +35,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void isTwoPagePdf() throws JsonProcessingException, IOException {
+	public void isTwoPagePdf() throws IOException {
 		// Given
 		final int expectedPageNo = 2;
 
@@ -59,7 +58,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContainsExpectedContentForEmbeddedArrayObjects() throws JsonProcessingException, IOException {
+	public void pdfContainsExpectedContentForEmbeddedArrayObjects() throws IOException {
 		// Given
 		final String objectName = "ArrayOfNos";
 		final String firstItemName = "First";
@@ -88,7 +87,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContainsExpectedContentForEmbeddedArrayValues() throws JsonProcessingException, IOException {
+	public void pdfContainsExpectedContentForEmbeddedArrayValues() throws IOException {
 		// Given
 		final String objectName = "ArrayOfNos";
 		final String firstItem = "One";
@@ -110,7 +109,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContainsExpectedContentForEmbeddedObject() throws JsonProcessingException, IOException {
+	public void pdfContainsExpectedContentForEmbeddedObject() throws IOException {
 		// Given
 		final String objectName = "Person";
 		final String name = "First Name";
@@ -130,7 +129,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContainsExpectedContentMultipleNodes() throws JsonProcessingException, IOException {
+	public void pdfContainsExpectedContentMultipleNodes() throws IOException {
 		// Given
 		final String firstFieldName = "First Name";
 		final String firstFieldValue = "Samba";
@@ -154,7 +153,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContainsExpectedContentSingleNode() throws JsonProcessingException, IOException {
+	public void pdfContainsExpectedContentSingleNode() throws IOException {
 		// Given
 		final String name = "First Name";
 		final String value = "Samba";
@@ -171,7 +170,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContentInExpectedOrder() throws JsonProcessingException, IOException {
+	public void pdfContentInExpectedOrder() throws IOException {
 		// Given
 		final int expectedNoLines = 6;
 
@@ -202,7 +201,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfIsGenerated() throws JsonProcessingException, IOException {
+	public void pdfIsGenerated() throws IOException {
 		// Given
 		final JsonNode json = new ObjectMapper().readTree("{\"First Name\":\"Samba\"}");
 		// When
@@ -212,7 +211,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void unusedPagesRemoved() throws JsonProcessingException, IOException {
+	public void unusedPagesRemoved() throws IOException {
 		// Given
 		final int expectedPageNo = 1;
 		final JsonNode json = new ObjectMapper().readTree("{\"First Name\":\"Samba\"}");
@@ -223,7 +222,7 @@ public class PdfGeneratorTest {
 	}
 
 	@Test
-	public void pdfContentIncludesUnicode() throws JsonProcessingException, IOException {
+	public void pdfContentIncludesUnicode() throws IOException {
 		// Given
 		final int expectedNoLines = 6;
 
