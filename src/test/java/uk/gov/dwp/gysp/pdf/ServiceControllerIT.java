@@ -45,11 +45,11 @@ public class ServiceControllerIT {
 				.postForEntity(getPdfServiceApiEndpoint() + "/generatePdf", json, byte[].class);
 
 		// Then
-		assertEquals("Response status code not as expected", response.getStatusCode(), HttpStatus.OK);
+		assertEquals("Response status code not as expected", HttpStatus.OK, response.getStatusCode());
 		assertEquals("Response content type not as expected",
+				MediaType.APPLICATION_OCTET_STREAM_VALUE,
 				response.getHeaders().getContentType().getType() + "/"
-						+ response.getHeaders().getContentType().getSubtype(),
-				MediaType.APPLICATION_OCTET_STREAM_VALUE);
+						+ response.getHeaders().getContentType().getSubtype());
 
 		PDFParser pdfParser = new PDFParser(new RandomAccessBuffer(response.getBody()));
 		pdfParser.parse();
@@ -58,7 +58,7 @@ public class ServiceControllerIT {
 		// representation of the PDF document i.e. COSDocument object
 
 		String output = new PDFTextStripper().getText(pdfParser.getPDDocument());
-		String[] outputContents = output.split("\n");
+		String[] outputContents = output.split(System.lineSeparator());
 		assertEquals("Address not as expected", "address", outputContents[0]);
 		assertEquals("Building number not as expected", "buildingNumber", outputContents[1]);
 		assertEquals("Building number value not as expected", "100", outputContents[2]);
