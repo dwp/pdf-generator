@@ -11,7 +11,6 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import uk.gov.dwp.gysp.pdf.processor.PdfGeneratorProcessor;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +36,6 @@ public class PdfGenerator {
 	private float leftMarginOffset;
 	private float pageEndY;
 	private int pageIndex = 0;
-	private float pageStartY;
 
 	public PdfGenerator(final JsonNode json) {
 		this.json = json;
@@ -49,11 +47,11 @@ public class PdfGenerator {
 	}
 
 	private static InputStream getArialBoldFontStream() {
-		return PdfGeneratorProcessor.class.getResourceAsStream("/org/apache/pdfbox/resources/ttf/Roboto-Bold.ttf");
+		return PdfGenerator.class.getResourceAsStream("/org/apache/pdfbox/resources/ttf/Roboto-Bold.ttf");
 	}
 
 	private static InputStream getArialFontStream() {
-		return PdfGeneratorProcessor.class.getResourceAsStream("/org/apache/pdfbox/resources/ttf/Roboto-Regular.ttf");
+		return PdfGenerator.class.getResourceAsStream("/org/apache/pdfbox/resources/ttf/Roboto-Regular.ttf");
 	}
 
 	private void addFormAnswer(final JsonNode valueNode) throws IOException {
@@ -102,10 +100,9 @@ public class PdfGenerator {
 
 	private void initPageVars() {
 		final PDRectangle pageSize = this.currentPage.getMediaBox();
-		this.pageStartY = pageSize.getUpperRightY() - MARGIN;
 		this.pageEndY = pageSize.getLowerLeftY() + MARGIN;
 		this.leftMarginOffset = pageSize.getLowerLeftX() + MARGIN;
-		this.heightCounter = this.pageStartY;
+		this.heightCounter = pageSize.getUpperRightY() - MARGIN;
 	}
 
 	private void initPdfDocument() throws IOException {
@@ -152,7 +149,7 @@ public class PdfGenerator {
 			} else {
 				LOGGER.error("Bad node type found for json {}", json.toString());
 				throw new IllegalArgumentException(
-						String.format("Node type: %s for node %s is not currently supported when processing JSON Arrays",
+						String.format("Node type: '%s' is not currently supported when processing JSON Arrays",
 								element.getNodeType().name()));
 			}
 		}
